@@ -1,64 +1,61 @@
-# CollegeCompass
+# College Discovery
 
-A full-stack college discovery app for India — search colleges, compare options, predict admissions from exam rank, save shortlists, and join Q&A discussions.
+A web app to help students discover colleges, compare options, predict admission chances, and get their college-related questions answered.
 
-![Next.js](https://img.shields.io/badge/Next.js-16-black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Prisma_7-336791)
+**Live Demo:** [https://college-discovery-mocha.vercel.app/](https://college-discovery-mocha.vercel.app/)
+
+## Screenshots
+
+| College | Compare |
+|---|---|
+| <img src="screenshots/colleges.png" width="380"> | <img src="screenshots/compare.png" width="380"> |
+ 
+| Predictor | Q&A |
+|---|---|
+| <img src="screenshots/predictor.png" width="380"> | <img src="screenshots/qa.png" width="380"> |
+
+## Tech Stack
+
+- **Framework:** Next.js (App Router) + TypeScript
+- **Database/ORM:** Prisma
+- **Styling:** Tailwind CSS
+- **Auth:** Custom auth (register/login/logout, session context)
 
 ## Features
 
-- **Search & filter** colleges by state, type, category, fees, and name
-- **College profiles** with courses, placements, and reviews
-- **Compare** up to 3 colleges side-by-side
-- **Rank predictor** for JEE, NEET, and CUET
-- **Save shortlist** (login required)
-- **Q&A discussions** — ask and answer questions
-- **JWT authentication** (register / login)
+- **Browse Colleges** — searchable/filterable list of colleges with detail pages
+- **Compare** — compare multiple colleges side by side
+- **Predictor** — predicts admission chances based on user input
+- **Q&A / Discussions** — ask questions and get answers from other users
+- **Save Colleges** — bookmark colleges to a personal saved list
+- **User Accounts** — register, log in, and stay signed in across sessions
 
-## Tech stack
-
-| Layer | Tools |
-|-------|--------|
-| Frontend | Next.js 16, React 19, TypeScript, Tailwind CSS 4 |
-| Backend | Next.js API Routes |
-| Database | PostgreSQL, Prisma 7 |
-| Auth | JWT, bcrypt |
-
-## Quick start
-
-### Prerequisites
-
-- Node.js 20+
-- PostgreSQL (local or cloud)
-
-### Setup
+## Running Locally
 
 ```bash
-git clone <your-repo-url>
-cd college-discovery
-
+git clone https://github.com/<your-username>/<repo-name>.git
+cd <repo-name>
 npm install
-cp .env.example .env
-# Edit .env: DATABASE_URL, JWT_SECRET
+```
 
+Copy `.env.example` to `.env` and fill in the required values (database connection string, auth secret, etc.):
+
+```bash
+cp .env.example .env
+```
+
+Set up the database:
+
+```bash
 npx prisma generate
-npm run db:push
-npm run db:seed
+npx prisma migrate dev
+npx prisma db seed
+```
+
+Start the dev server:
+
+```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
-
-**Demo login:** `demo@example.com` / `password123`
-
-## Environment variables
-
-| Variable | Description |
-|----------|-------------|
-| `DATABASE_URL` | PostgreSQL connection string |
-| `JWT_SECRET` | Secret for signing JWT tokens (long random string) |
-
-## License
-
-MIT (or your chosen license)
+Open [http://localhost:3000](http://localhost:3000).
