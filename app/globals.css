@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* Display serif for headings, a clean grotesk for body copy, and a mono
+   face for numeric data (fees, ranks, packages) — this app is basically a
+   ledger of admissions numbers, so the data gets a typeface of its own. */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+@theme {
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Neutrals: warm paper background, ink text */
+  --color-paper: #f6f3ec;
+  --color-ink: #262b3d;
+  --color-muted: #6b7280;
+
+  /* Brand: collegiate navy, replaces the generic indigo scale */
+  --color-brand-50: #eef1f8;
+  --color-brand-100: #dce2f0;
+  --color-brand-200: #b9c6e0;
+  --color-brand-300: #93a6cc;
+  --color-brand-400: #6b84b3;
+  --color-brand-500: #445e96;
+  --color-brand-600: #1f2b4d;
+  --color-brand-700: #141b33;
+
+  /* Gold: the accent used for ratings, highlights and the ledger signature */
+  --color-gold-100: #f7ecc9;
+  --color-gold-300: #e7c766;
+  --color-gold-400: #d9b44a;
+  --color-gold-500: #c9a227;
+  --color-gold-600: #a9841e;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-brand-600);
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: background-color 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary:hover { background-color: var(--color-brand-700); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #374151;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    border: 1px solid #e2e8f0;
+    transition: background-color 0.15s;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background-color: #f8fafc; }
+
+  .card {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+  }
+
+  .input-field {
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    background-color: #ffffff;
+  }
+  .input-field:focus {
+    border-color: var(--color-brand-500);
+    box-shadow: 0 0 0 2px rgb(68 94 150 / 0.2);
+  }
+
+  /* Signature element: a small "admit card" style tile for numeric stats
+     (fees, rating, package, cutoff rank) — a thin gold rule on top, and
+     mono digits underneath a small uppercase label, like an exam scorecard. */
+  .stat-chip {
+    position: relative;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+    background-color: #ffffff;
+    padding: 0.625rem 0.75rem;
+  }
+  .stat-chip::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0.75rem;
+    right: 0.75rem;
+    height: 2px;
+    background-color: var(--color-gold-500);
+  }
+  .stat-chip .stat-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-muted);
+  }
+  .stat-chip .stat-value {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  /* Small uppercase label used above section headings */
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-gold-600);
+  }
+}
